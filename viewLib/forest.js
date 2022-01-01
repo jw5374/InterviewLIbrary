@@ -31,46 +31,34 @@ function treeGen(nodes) {
     return nodes.shift()
 }
 
-function preorderTraverse(treeRoot, sequence) {
-    if(treeRoot.left == null && treeRoot.right == null) {
-        sequence.push(treeRoot.val)
-        return
+function preorderTraverse(treeRoot) {
+    if(treeRoot == null) {
+        return []
     }
-    sequence.push(treeRoot.val)
-    if(treeRoot.left != null) {
-        preorderTraverse(treeRoot.left, sequence)
-    }
-    if(treeRoot.right != null) {
-        preorderTraverse(treeRoot.right, sequence)
-    }
+
+    let left = preorderTraverse(treeRoot.left)
+    let right = preorderTraverse(treeRoot.right)
+    return [treeRoot.val, ...left, ...right]
 }
 
-function postorderTraverse(treeRoot, sequence) {
-    if(treeRoot.left == null && treeRoot.right == null) {
-        sequence.push(treeRoot.val)
-        return
+function postorderTraverse(treeRoot) {
+    if(treeRoot == null) {
+        return []
     }
-    if(treeRoot.left != null) {
-        postorderTraverse(treeRoot.left, sequence)
-    }
-    if(treeRoot.right != null) {
-        postorderTraverse(treeRoot.right, sequence)
-    }
-    sequence.push(treeRoot.val)
+
+    let left = postorderTraverse(treeRoot.left)
+    let right = postorderTraverse(treeRoot.right)
+    return [...left, ...right, treeRoot.val]
 }
 
-function inorderTraverse(treeRoot, sequence) {
-    if(treeRoot.left == null && treeRoot.right == null) {
-        sequence.push(treeRoot.val)
-        return
+function inorderTraverse(treeRoot) {
+    if(treeRoot == null) {
+        return []
     }
-    if(treeRoot.left != null) {
-        inorderTraverse(treeRoot.left, sequence)
-    }
-    sequence.push(treeRoot.val)
-    if(treeRoot.right != null) {
-        inorderTraverse(treeRoot.right, sequence)
-    }
+
+    let left = inorderTraverse(treeRoot.left)
+    let right = inorderTraverse(treeRoot.right)
+    return [...left, treeRoot.val ,...right]
 }
 
 function breadthFirst(treeRoot, sequence, queue = []) {
@@ -105,6 +93,22 @@ function breadthFirst(treeRoot, sequence, queue = []) {
     }
 }
 
+function breadthFirstIter(treeRoot, queue = []) {
+    let sequence = []
+    queue.push(treeRoot)
+    while(queue.length > 0) {
+        let node = queue.shift()
+        sequence.push(node.val)
+        if(node.left != null) {
+            queue.push(node.left)
+        }
+        if(node.right != null) {
+            queue.push(node.right)
+        }
+    }
+    return sequence
+}
 
 
-module.exports = { nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst }
+
+module.exports = { nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst, breadthFirstIter }
