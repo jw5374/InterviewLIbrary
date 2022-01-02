@@ -1,7 +1,8 @@
+// arrays of numbers [1...n]
 function sieveOfEratosthenes(rangeArray) {
-    for(let i = 2; i < Math.pow(rangeArray.length, 0.5); i++) {
+    for(let i = 1; i < Math.pow(rangeArray.length, 0.5); i++) {
         if(rangeArray[i]) {
-            for(let j = i*i; j < rangeArray.length; j+=i) {        
+            for(let j = rangeArray[i] * rangeArray[i] - 1; j < rangeArray.length; j+=rangeArray[i]) {        
                 rangeArray[j] = false
             }
         }
@@ -39,3 +40,5 @@ function factorizeNaive(num, primes) {
 // let primes = extractSieve(sequence)
 // primes.splice(0, 1)
 // let factors = factorizeNaive(600851475143, primes)
+
+module.exports = { sieveOfEratosthenes, extractSieve }
