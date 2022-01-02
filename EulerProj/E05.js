@@ -32,8 +32,6 @@ function multAll(array) {
     return res
 }
 
-let array1 = arrayGen(21)
-array1.shift()
-
-let attempt = extractModulus(array1)
-console.log(((multAll(attempt) / 12) / 12) / 20) // 232792560 no idea how it works
+// let array1 = arrayGen(20)
+// let attempt = extractModulus(array1)
+// console.log(((multAll(attempt) / 12) / 12) / 20) // 232792560 no idea how it works
