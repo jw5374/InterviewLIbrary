@@ -1,5 +1,7 @@
 exports.arrayGen = function arrayGen(n) {
-    return [...Array(n).keys()]
+    let array = [...Array(n+1).keys()]
+    array.shift() 
+    return array
 }
 
 exports.randomArrayGen = function randomArrayGen(n, maxVal) {
