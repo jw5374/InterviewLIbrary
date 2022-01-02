@@ -8,5 +8,5 @@ function sumOfFirstSquares(n) {
     return sum
 }
 
-let answer = Math.pow(sumOfFirstNatural(100), 2) - sumOfFirstSquares(100)
-console.log(answer)
+// let answer = Math.pow(sumOfFirstNatural(100), 2) - sumOfFirstSquares(100)
+// console.log(answer)
