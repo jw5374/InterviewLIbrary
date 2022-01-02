@@ -2,6 +2,19 @@ exports.arrayGen = function arrayGen(n) {
     return [...Array(n).keys()]
 }
 
+exports.randomArrayGen = function randomArrayGen(n, maxVal) {
+    let array = []
+    while(array.length < n) {
+        let num = Math.floor(Math.random() * maxVal) + 2
+        if(num in array) {
+            continue
+        } else {
+            array.push(num)
+        }
+    }
+    return array
+}
+
 exports.shuffle = function shuffle(array) {
     let swapIndex, min
     let max = array.length

@@ -38,9 +38,41 @@ exports.canSum = function canSum(target, array, memo = {}) {
     if(target < 0) {
         return false
     }
+    let results = []
     for(let i = 0; i < array.length; i++) {
         let sum = target - array[i]
         memo[sum] = canSum(sum, array, memo)
+        results.push(memo[sum])
     }
-    
+    for(let res of results) {
+        if(res) {
+            return true
+        }
+    }
+    return false
+}
+
+exports.canSumLimited = function canSum(target, array, memo = {}) {
+    if(target in memo) {
+        return memo[target]
+    }
+    if(target == 0) {
+        return true
+    }
+    if(target < 0) {
+        return false
+    }
+    let results = []
+    for(let i = 0; i < array.length; i++) {
+        let sum = target - array[i]
+        let sliced = array.slice(0, i).concat(array.slice(i+1))
+        memo[sum] = canSum(sum, sliced, memo)
+        results.push(memo[sum])
+    }
+    for(let res of results) {
+        if(res) {
+            return true
+        }
+    }
+    return false
 }
