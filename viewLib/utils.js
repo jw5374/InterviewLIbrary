@@ -69,3 +69,21 @@ exports.binarySearch = function binarySearch(target, array) {
     }
     return [-1, false]
 }
+
+exports.partition = function partition(array, low, high) {
+    let pivot = array[Math.floor((low + high) / 2)]
+    let i = low
+    let j = high
+    while(true) {
+        while (array[i] < pivot) {
+            i++
+        }
+        while (array[j] > pivot) {
+            j--
+        }
+        if(i >= j) {
+            return j
+        }
+        module.exports.swap(i, j, array)
+    }
+} 
