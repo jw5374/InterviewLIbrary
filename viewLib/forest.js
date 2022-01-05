@@ -41,6 +41,22 @@ function preorderTraverse(treeRoot) {
     return [treeRoot.val, ...left, ...right]
 }
 
+function preorderTraverseIter(treeRoot, nodeStack = []) {
+    let sequence = []
+    nodeStack.push(treeRoot)
+    while(nodeStack.length > 0) {
+        let currNode = nodeStack.pop()
+        sequence.push(currNode.val)
+        if(currNode.right != null) {
+            nodeStack.push(currNode.right)
+        }
+        if(currNode.left != null) {
+            nodeStack.push(currNode.left)
+        }
+    }
+    return sequence
+}
+
 function postorderTraverse(treeRoot) {
     if(treeRoot == null) {
         return []
@@ -109,6 +125,4 @@ function breadthFirstIter(treeRoot, queue = []) {
     return sequence
 }
 
-
-
-module.exports = { nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst, breadthFirstIter }
+module.exports = { nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst, breadthFirstIter, preorderTraverseIter }
