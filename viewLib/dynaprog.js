@@ -76,3 +76,20 @@ exports.canSumLimited = function canSum(target, array, memo = {}) {
     }
     return false
 }
+
+exports.findWays = function findWays(n, memo = {}) {
+    if(n in memo) {
+        return memo[n]
+    }
+    if(n <= 0) {
+        return 0
+    }
+    if(n == 1) {
+        return 1
+    }
+    if(n == 2) {
+        return 2
+    }
+    memo[n] = findWays(n-2, memo) + findWays(n-1, memo) 
+    return memo[n]
+}
