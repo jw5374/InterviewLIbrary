@@ -86,4 +86,47 @@ exports.partition = function partition(array, low, high) {
         }
         module.exports.swap(i, j, array)
     }
-} 
+}
+
+exports.directedGraphGen = function directedGraphGen(nodeArray, maxEdge) {
+    let adjacency = {}
+    let copy = [...nodeArray]
+    for(let node of nodeArray) {
+        adjacency[node] = []
+    }
+    module.exports.shuffle(copy)
+    for(let node of Object.keys(adjacency)) {
+        let edges = Math.floor(Math.random() * (maxEdge - 1)) + 1
+        while(edges > 0) {
+            let popped = copy.pop()
+            if(!popped) {
+                break
+            }
+            adjacency[node].push(popped)
+            edges--
+        }
+    }
+    return adjacency
+}
+
+exports.undirectedGraphGen = function undirectedGraphGen(nodeArray, maxEdge) {
+    let adjacency = {}
+    let copy = [...nodeArray]
+    for(let node of nodeArray) {
+        adjacency[node] = []
+    }
+    module.exports.shuffle(copy)
+    for(let node of Object.keys(adjacency)) {
+        let edges = Math.floor(Math.random() * (maxEdge - 1)) + 1
+        while(edges > 0) {
+            let popped = copy.pop()
+            if(!popped) {
+                break
+            }
+            adjacency[node].push(popped)
+            adjacency[popped].push(node)
+            edges--
+        }
+    }
+    return adjacency
+}
