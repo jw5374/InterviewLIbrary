@@ -10,3 +10,5 @@ function sumOfFirstSquares(n) {
 
 // let answer = Math.pow(sumOfFirstNatural(100), 2) - sumOfFirstSquares(100)
 // console.log(answer)
+
+module.exports = { sumOfFirstNatural, sumOfFirstSquares }
