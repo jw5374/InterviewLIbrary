@@ -1,4 +1,4 @@
-const { swap, mergeSorted, partition } = require("./utils.js")
+const { swap, mergeSorted, partition, buildMaxHeap, siftMaxDown } = require("./utils.js")
 
 function insertionSort(array) {
     for(let i = 0; i < array.length; i++) {
@@ -66,7 +66,14 @@ function mergeSort(array) {
 }
 
 function heapSort(array) {
-    
+    let last = array.length - 1
+    buildMaxHeap(array)
+    while(last > 0) {
+        swap(0, last, array)
+        last--
+        siftMaxDown(array, 0, last)
+    }
+    return array
 }
 
 function quickSort(array, low, high) {

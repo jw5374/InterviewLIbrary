@@ -59,6 +59,94 @@ exports.mergeSorted = function mergeSorted(array1, array2) {
     return merged
 }
 
+exports.maxHeapify = function maxHeapify(arr, index) {
+    let largest
+    let leftNode = (index * 2) + 1
+    let rightNode = (index * 2) + 2
+    if(leftNode < arr.length && arr[leftNode] > arr[index]) {
+        largest = leftNode
+    } else {
+        largest = index
+    }
+    if(rightNode < arr.length && arr[rightNode] > arr[largest]) {
+        largest = rightNode
+    }
+    if(largest != index) {
+        module.exports.swap(index, largest, arr)
+        maxHeapify(arr, largest)
+    }
+}
+
+exports.minHeapify = function minHeapify(arr, index) {
+    let smallest
+    let leftNode = (index * 2) + 1
+    let rightNode = (index * 2) + 2
+    if(leftNode < arr.length && arr[leftNode] < arr[index]) {
+        smallest = leftNode
+    } else {
+        smallest = index
+    }
+    if(rightNode < arr.length && arr[rightNode] < arr[smallest]) {
+        smallest = rightNode
+    }
+    if(smallest != index) {
+        module.exports.swap(index, smallest, arr)
+        minHeapify(arr, smallest)
+    }
+}
+
+exports.siftMaxDown = function siftMaxDown(array, start, end) {
+    let root = start
+    let left = (2 * root) + 1
+    while(left <= end) {
+        let swap = root
+        if(array[swap] < array[left]) {
+            swap = left
+        } 
+        if((left+1) <= end && array[swap] < array[left+1]) {
+            swap = left+1
+        }
+        if(swap == root) {
+            return
+        }
+        module.exports.swap(root, swap, array)
+        root = swap
+        left = (2 * root) + 1
+    }
+}
+
+exports.siftMinDown = function siftMinDown(array, start, end) {
+    let root = start
+    let left = (2 * root) + 1
+    while(left <= end) {
+        let swap = root
+        if(array[swap] > array[left]) {
+            swap = left
+        } 
+        if((left+1) <= end && array[swap] > array[left+1]) {
+            swap = left+1
+        }
+        if(swap == root) {
+            return
+        }
+        module.exports.swap(root, swap, array)
+        root = swap
+        left = (2 * root) + 1
+    }
+}
+
+exports.buildMaxHeap = function buildMaxHeap(arr) {
+    for(let i = Math.floor(arr.length / 2); i >= 0; i--) {
+        module.exports.maxHeapify(arr, i)
+    }
+}
+
+exports.buildMinHeap = function buildMinHeap(arr) {
+    for(let i = Math.floor(arr.length / 2); i >= 0; i--) {
+        module.exports.minHeapify(arr, i)
+    }
+}
+
 exports.binarySearch = function binarySearch(target, array) {
     let mid = Math.floor(array.length / 2)
     let low = 0
@@ -77,8 +165,6 @@ exports.binarySearch = function binarySearch(target, array) {
     }
     return [-1, false]
 }
-
-
 
 exports.partition = function partition(array, low, high) {
     let pivot = array[Math.floor((low + high) / 2)]
