@@ -93,3 +93,46 @@ exports.findWays = function findWays(n, memo = {}) {
     memo[n] = findWays(n-2, memo) + findWays(n-1, memo) 
     return memo[n]
 }
+
+//unsolved
+exports.coinChange = function coinChange(coins, amount, memo = {0: 0}, min = amount+1) {
+    coins.sort((a, b) => b - a)
+    if(amount in memo) {
+        return memo[amount]
+    }
+    for(let i = 0; i < coins.length; i++) {
+        let remaining = amount - coins[i]
+        if(remaining < 0) {
+            continue
+        }
+        if(remaining >= 0) {
+            memo[amount] = Math.min(amount + 1, 1 + coinChange(coins, remaining, memo, min))
+            if(min > memo[amount]) {
+                min = memo[amount]
+            }
+        }
+    }
+    if(min != amount+1) {
+        return min
+    }
+    return -1
+}
+
+exports.coinChangeIter = function coinChangeIter(coins, amount) {
+    let memo = []
+    for(let i = 0; i < amount+1; i++) {
+        memo.push(amount+1)
+    }
+    memo[0] = 0;
+    for(let i = 1; i < amount+1; i++) {
+        for(let coin of coins) {
+            if((i - coin) >= 0) {
+                memo[i] = Math.min(memo[i], 1 + memo[i - coin])
+            }
+        }
+    }
+    if(memo[amount] != amount+1) {
+        return memo[amount]
+    }
+    return -1
+}
