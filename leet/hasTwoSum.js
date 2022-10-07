@@ -10,3 +10,21 @@ function twoSumIndices(nums, target) {
         }
     } 
 }
+
+function twoSumHash(nums, target) {
+    let dict = {}
+    for(let i = 0; i < nums.length; i++) {
+       if(dict[nums[i]] != undefined) {
+           dict[nums[i]].push(i)
+       } else {
+           dict[nums[i]] = [i]
+       }
+    }
+    for(let i = 0; i < nums.length; i++) {
+        let remaining = target - nums[i]
+        if(dict[remaining] != undefined && (dict[remaining].length > 1 || remaining != nums[i])) {
+            return [i, dict[remaining].pop()]
+        }
+    }
+}
+
