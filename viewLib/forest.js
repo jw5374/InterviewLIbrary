@@ -125,4 +125,4 @@ function breadthFirstIter(treeRoot, queue = []) {
     return sequence
 }
 
-module.exports = { nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst, breadthFirstIter, preorderTraverseIter }
+module.exports = { TreeNode, nodeGen, treeGen, preorderTraverse, postorderTraverse, inorderTraverse, breadthFirst, breadthFirstIter, preorderTraverseIter }
