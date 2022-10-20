@@ -27,5 +27,6 @@ for(let val of vals2) {
 
 let tree = treeGen(nodes)
 let tree2 = treeGen(nodes2)
-console.log(isSameTree(tree, tree2))
+// console.log(isSameTree(tree, tree2))
  
+module.exports = { isSameTree }
