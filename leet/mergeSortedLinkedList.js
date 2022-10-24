@@ -61,7 +61,6 @@ function createLinked(arr) {
   let listH = list
   for(let i = 0; i < arr.length; i++) {
     list.val = arr[i]
-    console.log(arr[i], list.val, list, listH)
     if(i == (arr.length - 1)) {
       break
     }
@@ -89,4 +88,6 @@ let linked1 = createLinked(list1)
 let linked2 = createLinked(list2)
 
 let merged = mergeTwoLists(linked1, linked2)
-console.log(printLinked(merged), printLinked(linked1), printLinked(linked2))
+// console.log(printLinked(merged), printLinked(linked1), printLinked(linked2))
+
+module.exports = { ListNode, createLinked, printLinked }
