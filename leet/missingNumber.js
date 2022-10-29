@@ -7,4 +7,15 @@ function missingNumber(nums) {
   return sum
 }
 
-console.log(missingNumber([9,6,4,2,3,5,7,0,1]))
+function missingNumberBits(nums) {
+  let res = nums.pop()
+  for(let num of nums) {
+    res = res ^ num
+  }
+  for(let i = 0; i <= nums.length+1; i++) {
+    res = res ^ i
+  }
+  return res
+}
+
+console.log(missingNumberBits([9,6,4,2,3,5,7,0,1]))
