@@ -2,7 +2,6 @@ function findMin(nums) {
   let [left, right] = [0, nums.length-1]
   while(left <= right) {
     let mid = Math.floor((left + right) / 2)
-    console.log(left, right, mid, nums[left], nums[right])
     if(nums[left] <= nums[right]) {
       return nums[left]
     } else {
